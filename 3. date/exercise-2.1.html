@@ -10,12 +10,9 @@
 <script>
     const year = +prompt("Введите год");
     const date = new Date(year, 2, 0) // последний день февраля искомого год
-    if(date.getDate() === 29){
-        alert(`${year} - высокосный`)
-    }
-    else {
-        alert(`${year} - невысокосный`)
-    }
+    const prefix = (date.getDate() !== 29) ? "не" : ""
+    alert(`${year} - ${prefix}высокосный`)
+  
 
     </script>
 

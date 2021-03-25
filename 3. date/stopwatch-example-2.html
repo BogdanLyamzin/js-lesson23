@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+    <div id="stopwatch-root"></div>
+    <!-- <div class="stopwatch">
+      <div class="stopwatch-time"></div>
+      <div class="stopwatch-actions">
+        <button class="stopwatch-start">Start</button>
+        <button class="stopwatch-stop">Stop</button>
+        <button class="stopwatch-reset">Reset</button>
+      </div>
+    </div> -->
+  </div>
+  <script>
+    class Stopwatch {
+
+      markup = `<div class="stopwatch-time"></div>
+      <div class="stopwatch-actions">
+        <button class="stopwatch-start">Start</button>
+        <button class="stopwatch-stop">Stop</button>
+        <button class="stopwatch-reset">Reset</button>
+      </div>`;
+
+      constructor(selector){
+        this.elem = document.querySelector(selector);
+        this.time = 0;
+        this.timeId = null;
+        this.stopwatchTime = null;
+      }
+
+      start = ()=> {
+        this.timeId = setInterval(()=> {
+            this.time += 1 ;
+            this.stopwatchTime.textContent = this.time;
+          }, 1000);
+      }
+
+      stop = ()=> {
+        clearInterval(this.timeId)
+      }
+
+      reset = ()=>{
+        this.stop();
+        this.time = 0;
+        this.stopwatchTime.textContent = "0"
+      }
+
+      render(){
+        // this = newStopwatch
+        const stopwatchContainer = document.createElement("div");
+        stopwatchContainer.classList.add("stopwatch");
+        stopwatchContainer.insertAdjacentHTML("beforeend", this.markup);
+        
+        const stopwatchTime = stopwatchContainer.querySelector(".stopwatch-time");
+        this.stopwatchTime = stopwatchTime;
+        const startButton = stopwatchContainer.querySelector(".stopwatch-start")
+
+        startButton.addEventListener("click", this.start);
+        const stopButton = stopwatchContainer.querySelector(".stopwatch-stop");
+        stopButton.addEventListener("click", this.stop)
+        const resettButton = stopwatchContainer.querySelector(".stopwatch-reset");
+        resettButton.addEventListener("click", this.reset)
+        this.elem.append(stopwatchContainer)
+      }
+    }
+
+    const newStopwatch = new Stopwatch("#stopwatch-root");
+    console.log(newStopwatch)
+    newStopwatch.render()
+  </script>
+</body>
+</html>

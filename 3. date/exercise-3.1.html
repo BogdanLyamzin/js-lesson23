@@ -20,15 +20,16 @@
     // 7. Высчитать разницу в годах.
     const birthday = prompt("Введите дату в формате дд.мм.гггг");
     const now = new Date();
+    const currentMonth = now.getMonth() + 1;
+    const currentDay = now.getDate();
     // 02.02.1986
     const [day, month, year] = birthday.split(".");
-    const dateBirthday = new Date(+year, (+month - 1), +day)
-    const dayDifferent = getDaysDifferent(now - dateBirthday);
-    const yearDifferent = (dayDifferent / 365).toFixed(0);
-    console.log(yearDifferent)
-    function getDaysDifferent(miliseconds){
-        return miliseconds / 1000 / 3600 / 24;
+    
+    let age = now.getFullYear() - year;
+    if(currentMonth < +month || (currentMonth === month && currentDay < day)) {
+      age--;
     }
+    alert(`Вам ${age} лет`);
 </script>
 </body>
 </html>

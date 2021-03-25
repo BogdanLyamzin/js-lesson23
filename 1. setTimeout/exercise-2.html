@@ -86,7 +86,47 @@
 то есть повторяющиеся участки кода нужно вынести в функции -->
     <script>
 
+        const show = function(elem){
+            elem.style.display = "block";
+        };
 
+        const hide = function(elem){
+            elem.style.display = "none";
+        }
+
+        const addClass = function(elem, className){
+            elem.classList.add(className)
+        }
+
+        const removeClass = function(elem, className){
+            elem.classList.remove(className)
+        }
+
+        const myModal = document.getElementById("myModal");
+
+        setTimeout(addClass, 1000, myModal, "show");
+        // setTimeout(()=> {
+        //     myModal.classList.add("show")
+        // }, 1000);
+
+        setTimeout(removeClass, 3000, myModal, "show");
+
+        const myModalButton = document.getElementById("myBtn");
+        myModalButton.addEventListener("click", function(e){
+            e.preventDefault();
+            setTimeout(addClass, 500, myModal, "show");
+        });
+
+        // const myModalCloseButton = document.querySelector("#myModal .close");
+        // myModalCloseButton.addEventListener("click", function(){
+        //     setTimeout(removeClass, 300, modal, "show");
+        // });
+
+        const closeModalButtons = document.querySelectorAll(".modal .close");
+        closeModalButtons.forEach(button => button.addEventListener("click", function(){
+            const modal = this.closest(".modal");
+            setTimeout(removeClass, 300, modal, "show");
+        }));
 
     </script>
 </body></html>

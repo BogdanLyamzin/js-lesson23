@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="faq">
+    
+  </div>
+  <script>
+    const faqArr = [
+      {
+      question: "Who is next?",
+      answer: "You next, bitch!"
+    },
+    {
+      question: "Who is next?",
+      answer: "You next, bitch!"
+    },
+    {
+      question: "Who is next?",
+      answer: "You next, bitch!"
+    },
+    {
+      question: "Who is next?",
+      answer: "You next, bitch!"
+    },
+  ];
+
+    class FaqItem {
+      constructor({question, answer}){
+        this.question = question;
+        this.answer = answer;
+        this.elem = null
+      }
+
+      toggleAnswer(){
+        const answer = this.elem.querySelector(".answer");
+          console.log(answer)
+          if(!answer){
+            this.elem.insertAdjacentHTML("beforeend", `<p class="answer">${this.answer}</p>`)
+           
+          }
+          else {
+            answer.remove();
+          } 
+      }
+
+      render(){
+        const element = document.createElement("div");
+        element.insertAdjacentHTML("beforeend", `<p class="question">${this.question}</p>`)
+        const question = element.querySelector(".question")
+        question.addEventListener("click", this.toggleAnswer.bind(this));
+        this.elem = element;
+        return element;
+      }
+    }
+
+    const faqList = faqArr.map(item => {
+      const elem = new FaqItem(item);
+      return elem.render();
+    });
+
+    const faqContainer = document.getElementById("faq");
+  faqContainer.append(...faqList);
+  // const faqList = faqArr.map(item => {
+  //   const element = document.createElement("div");
+  //   element.insertAdjacentHTML("beforeend", `<p class="question">${item.question}</p>`)
+  //   const question = element.querySelector(".question")
+  //   question.addEventListener("click", function(){
+  //     const answer = element.querySelector(".answer");
+  //     if(answer){
+  //       answer.remove();
+  //     }
+  //     else {
+  //       this.insertAdjacentHTML("afterend", `<p class="answer">${item.answer}</p>`)
+  //     } 
+  //   });
+  //   return element;
+  // });
+
+  
+  </script>
+</body>
+</html>

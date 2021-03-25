@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .toggle-button {
+      display: inline-block;
+      padding: 10px 15px;
+      color: red;
+      border-radius: 5px;
+      border: 1px solid red;
+      text-decoration: none;
+      background-color: white;
+      cursor: pointer;
+    }
+
+    .toggle-button.active {
+      color: white;
+      background-color: red;
+      border: 1px solid red;
+    }
+
+    .click-button {
+      display: inline-block;
+      padding: 10px 15px;
+      color: green;green
+      border-radius: 5px;
+      border: 1px solid rgb(207, 204, 204);
+      text-decoration: none;
+      background-color: white;
+      cursor: pointer;
+    }
+
+    .click-button.active {
+      color: white;
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+  <!-- <button class="toggle-button">Name</button> -->
+
+  <script>
+    // const toggleButtons = document.querySelectorAll(".toggle-button");
+    // toggleButtons.forEach(button => button.addEventListener("click", function(e){
+    //   e.preventDefault();
+    //   this.classList.toggle("active");
+    // }));
+
+      class ToggleButton {
+        constructor({className, activeClassName, text}){
+          this.className = className;
+          this.activeClassName = activeClassName;
+          this.text = text;
+          this.elem = null;
+        }
+
+        render(){
+          const button = document.createElement("button");
+          button.classList.add(this.className);
+          button.textContent = this.text;
+          this.elem = button;
+          button.addEventListener("click", ()=>{
+            this.elem.classList.toggle(this.activeClassName)
+          })
+          return button;
+        }
+      }
+
+      const toggleButtonOptions = {
+        className: "toggle-button",
+        activeClassName: "active",
+        text: "Click me"
+      };
+
+      const toggleButtonObj1 = new ToggleButton(toggleButtonOptions);
+      document.body.append(toggleButtonObj1.render())
+
+      const toggleButtonObj2 = new ToggleButton(toggleButtonOptions);
+      document.body.append(toggleButtonObj2.render())
+
+      const toggleButtonObj3 = new ToggleButton(toggleButtonOptions);
+      document.body.append(toggleButtonObj3.render())
+    // const toggleButtonObj = {
+    //   basicClassName: "toggle-button",
+    //   activeClassName: "active",
+    //   text: "Name",
+    //   elem: null,
+    //   render(){
+    //     const button = document.createElement("button");
+    //     button.classList.add(this.basicClassName);
+    //     button.textContent = this.text;
+    //     this.elem = button;
+    //     button.addEventListener("click", ()=>{
+    //       this.elem.classList.toggle(this.activeClassName)
+    //     })
+    //     return button;
+    //   }
+    // };
+
+    
+  </script>
+</body>
+</html>
